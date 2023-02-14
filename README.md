@@ -1,6 +1,7 @@
 A repository for packages:
 
 - [ ] [`synthetic-monitoring-agent`](https://github.com/grafana/synthetic-monitoring-agent)
+- [ ] [`cloudflared`](https://github.com/cloudflare/cloudflared)
 
 # Usage
 ```bash
