@@ -1,6 +1,9 @@
 name: Rotate Repo Keys
 
 on:
+  push:
+    paths:
+      - '.github/workflows/keyrotate.yml'
   schedule:
     # https://crontab.guru/every-year
     - cron: '0 0 1 1 *'
@@ -10,7 +13,6 @@ on:
         type: environment
         default: 'dev'
         required: true
-  push:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
