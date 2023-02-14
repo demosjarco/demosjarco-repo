@@ -46,5 +46,8 @@ jobs:
             %commit
             %echo done
           EOF
+      - run: |
+          ls -lA
+          cat foo
       - run: gpg --batch --full-gen-key foo
       - run: gpg --list-secret-keys
