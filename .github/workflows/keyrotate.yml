@@ -45,4 +45,3 @@ jobs:
             %echo done
           EOF
       - run: gpg --batch --full-gen-key foo
-      - run: cat ${{ github.repository_owner }} ${{ github.repository_owner_id }}
