@@ -39,7 +39,6 @@ jobs:
         run: dpkg-scanpackages --multiversion . > Packages
       - name: Create compressed index file
         run: gzip -k -f Packages
-      - run: git add 'Packages' 'Packages.gz'
       - run: git commit -m 'Updated packages index' 'Packages' 'Packages.gz'
       - run: git push
   generate-releases:
