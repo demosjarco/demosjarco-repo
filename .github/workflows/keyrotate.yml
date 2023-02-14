@@ -54,4 +54,4 @@ jobs:
       - name: Upload private key to secrets
         run: gh secret set GNUPG_KEY_PRIVATE --env ${{ inputs.environment || 'dev' }} < gpg-private-key.asc
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GH_SECRET_ADD_TOKEN }}
