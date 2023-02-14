@@ -60,9 +60,6 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_SECRET_ADD_TOKEN }}
       - name: Output public key
         run: gpg --output apt/KEY.gpg --batch --yes --armor --export "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
-      - name: Setup Git
-        run: git config user.name "repo[bot]"
-      - name: Commit new key
-        run: git commit -m 'Updated signing key' 'apt/KEY.gpg'
-      - name: Push
-        run: git push
+      - run: git config user.name "repo[bot]"
+      - run: git commit -m 'Updated signing key' 'apt/KEY.gpg'
+      - run: git push
