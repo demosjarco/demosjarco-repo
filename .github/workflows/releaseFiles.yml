@@ -41,6 +41,7 @@ jobs:
         run: gzip -k -f Packages
         working-directory: apt
       - run: git config user.name "repo[bot]"
+      - run: tree -a -pughF
       - run: git commit -m 'Updated index files' 'apt/Packages' 'apt/Packages.gz'
       - run: git push
   generate-releases:
