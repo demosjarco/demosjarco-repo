@@ -65,7 +65,9 @@ jobs:
       - name: Setup Git
         run: git config user.name "repo[bot]"
       - name: Commit new key
-        run: git commit -am 'Updated signing key'
+        run: |
+          git add apt/
+          git commit -am 'Updated signing key'
         # run: git commit -m 'Updated signing key' 'apt/KEY.gpg'
       - name: Push
         run: git push
