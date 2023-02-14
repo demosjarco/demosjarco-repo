@@ -1,6 +1,9 @@
 name: Rotate Repo Keys
 
 on:
+  schedule:
+    # https://crontab.guru/every-year
+    - cron: '0 0 1 1 *'
   workflow_dispatch:
     environment:
         description: 'Environment to run tests against'
