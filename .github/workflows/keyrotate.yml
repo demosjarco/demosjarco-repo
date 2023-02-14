@@ -31,7 +31,8 @@ jobs:
       - name: Generate temp directory for gnupg
         run: echo "GNUPGHOME=$(mktemp -d)" >> "$GITHUB_ENV"
       # https://www.gnupg.org/documentation/manuals/gnupg/Unattended-GPG-key-generation.html
-      - run: |
+      - name: GPG config
+        run: |
           cat >foo <<EOF
             %echo Generating a basic OpenPGP key
             Key-Type: EDDSA
