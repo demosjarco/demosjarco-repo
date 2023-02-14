@@ -57,7 +57,7 @@ jobs:
       - run: tree -a -pughF
       - run: git config user.name "repo[bot]"
       - run: git status
-      - name: TEMP
-        run: git add 'Release'
+      # - name: TEMP
+      #   run: git add 'Release'
       - run: git commit -m 'Updated releases index' 'Release'
       - run: git push
