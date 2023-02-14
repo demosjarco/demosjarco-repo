@@ -46,4 +46,4 @@ jobs:
             %echo done
           EOF
       - name: Generate GPG signing key
-      - run: gpg --list-secret-keys      - name: Export private key
+      - run: gpg --list-secret-keys
