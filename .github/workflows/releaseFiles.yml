@@ -40,6 +40,7 @@ jobs:
         run: gzip -k -f Packages
       - run: git config user.name "repo[bot]"
       - run: git add 'Packages' 'Packages.gz'
+      - run: git fetch
       - run: git commit -m 'Updated packages index' 'Packages' 'Packages.gz'
       - run: git push
   generate-releases:
@@ -59,5 +60,6 @@ jobs:
       - run: git status
       # - name: TEMP
       #   run: git add 'Release'
+      - run: git fetch
       - run: git commit -m 'Updated releases index' 'Release'
       - run: git push
