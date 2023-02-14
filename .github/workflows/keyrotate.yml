@@ -45,3 +45,4 @@ jobs:
             %echo done
           EOF
       - run: gpg --batch --full-gen-key foo
+      - run: gpg --list-secret-keys
