@@ -46,4 +46,5 @@ jobs:
             %echo done
           EOF
       - name: Generate GPG signing key
+        run: gpg --batch --passphrase-fd 0 --pinentry-mode=loopback --full-gen-key gpgbatchconfig < ${{ secrets.GNUPG_KEY_PASSPHRASE }}
       - run: gpg --list-secret-keys
