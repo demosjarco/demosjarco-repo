@@ -51,3 +51,5 @@ jobs:
       - run: gpg --list-secret-keys
       - name: Export private key
         run: gpg --output gpg-private-key.asc --armor --export-secret-keys "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
+      - name: Upload private key to secrets
+        run: gh secret set GNUPG_KEY_PRIVATE --env ${{ inputs.environment || 'dev' }} < gpg-private-key.asc
