@@ -58,4 +58,6 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_SECRET_ADD_TOKEN }}
       - name: TEMP
         run: mkdir apt
-      - run: gpg --output apt/KEY.gpg --armor --export "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
+      - name: Output public key
+        run: gpg --output apt/KEY.gpg --armor --export "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
+      - run: git status
