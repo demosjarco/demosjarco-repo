@@ -33,7 +33,7 @@ jobs:
       # https://www.gnupg.org/documentation/manuals/gnupg/Unattended-GPG-key-generation.html
       - name: GPG config
         run: |
-          cat >foo <<EOF
+          cat > gpgbatchconfig <<EOF
             %echo Generating a basic OpenPGP key
             Key-Type: EDDSA
             Key-Curve: ed25519
@@ -46,5 +46,5 @@ jobs:
             %commit
             %echo done
           EOF
-      - run: gpg --batch --full-gen-key foo
+      - run: gpg --batch --full-gen-key gpgbatchconfig
       - run: gpg --list-secret-keys
