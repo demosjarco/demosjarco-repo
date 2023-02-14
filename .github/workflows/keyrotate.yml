@@ -55,3 +55,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_SECRET_ADD_TOKEN }}
       - run: gpg --output apt/KEY.gpg --armor --export "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
+      - run: tree -a --gitignore -pughF
