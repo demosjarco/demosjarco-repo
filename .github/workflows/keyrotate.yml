@@ -50,6 +50,7 @@ jobs:
         run: gpg --batch --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --full-gen-key gpgbatchconfig
       - name: Export private key
         run: gpg --batch --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --output gpg-private-key.asc --armor --export-secret-keys "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
+      - run: cat gpg-private-key.asc
       - name: Upload private key to secrets
         run: gh secret set GNUPG_KEY_PRIVATE --env ${{ inputs.environment || 'dev' }} < gpg-private-key.asc
         env:
