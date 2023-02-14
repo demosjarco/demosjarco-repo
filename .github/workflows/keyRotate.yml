@@ -1,4 +1,4 @@
-name: Rotate Repo Keys
+name: Rotate repo keys
 
 on:
   push:
