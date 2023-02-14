@@ -1,0 +1,25 @@
+name: Rotate Repo Keys
+
+on:
+  push:
+  workflow_dispatch:
+    environment:
+        description: 'Environment to run tests against'
+        type: environment
+        default: 'dev'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  # https://www.gnupg.org/documentation/manuals/gnupg/Unattended-GPG-key-generation.html
+  generate-key:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment || 'dev' }}
+    steps:
+      - uses: step-security/harden-runner@v2
+        with:
+            egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+      - run: echo 'GNUPGHOME=$(mktemp -d)' >> "$GITHUB_ENV"
+      - run: env
