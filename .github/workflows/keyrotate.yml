@@ -1,13 +1,13 @@
 name: Rotate Repo Keys
 
 on:
-  push:
   workflow_dispatch:
     environment:
         description: 'Environment to run tests against'
         type: environment
         default: 'dev'
         required: true
+  push:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
