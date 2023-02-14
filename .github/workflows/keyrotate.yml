@@ -44,4 +44,4 @@ jobs:
             %commit
             %echo done
           EOF
-      - run: gpg --batch --generate-key foo
+      - run: gpg --batch --full-gen-key foo
