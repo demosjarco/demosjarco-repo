@@ -46,5 +46,6 @@ jobs:
             %commit
             %echo done
           EOF
-      - run: gpg --batch --full-gen-key gpgbatchconfig
+      - name: Generate GPG signing key
+        run: gpg --batch --full-gen-key gpgbatchconfig
       - run: gpg --list-secret-keys
