@@ -34,10 +34,13 @@ jobs:
         with:
             egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
       - uses: actions/checkout@v3
-      - run: dpkg-scanpackages --multiversion . > Packages
-      - run: gzip -k -f Packages
-      - run: tree -a -pughF
-      - run: git status
+      - name: Create index file
+        run: dpkg-scanpackages --multiversion . > Packages
+      - name: Create compressed index file
+        run: gzip -k -f Packages
+      - run: git config user.name "repo[bot]"
+      - run: git commit -m 'Updated index files' 'Packages' 'Packages.gz'
+      - run: git push
   generate-releases:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment || 'prod' }}
