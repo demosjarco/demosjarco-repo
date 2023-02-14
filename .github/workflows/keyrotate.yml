@@ -23,6 +23,7 @@ jobs:
   generate-key:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment || 'dev' }}
+    permissions: write-all
     steps:
       - uses: step-security/harden-runner@v2
         with:
