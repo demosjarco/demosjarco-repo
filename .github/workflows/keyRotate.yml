@@ -3,7 +3,7 @@ name: Rotate Repo Keys
 on:
   push:
     paths:
-      - '.github/workflows/keyrotate.yml'
+      - '.github/workflows/keyRotate.yml'
   schedule:
     # https://crontab.guru/every-year
     - cron: '0 0 1 1 *'
