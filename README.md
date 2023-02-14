@@ -1,6 +1,6 @@
 A repository for packages:
 
-- [`synthetic-monitoring-agent`](https://github.com/grafana/synthetic-monitoring-agent)
+- [ ] [`synthetic-monitoring-agent`](https://github.com/grafana/synthetic-monitoring-agent)
 
 # Usage
 ```bash
