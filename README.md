@@ -1,4 +1,4 @@
-A PPA repository for my packages:
+A repository for packages:
 
 - [synthetic-monitoring-agent](https://github.com/grafana/synthetic-monitoring-agent)
 
