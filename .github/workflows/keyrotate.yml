@@ -34,9 +34,9 @@ jobs:
       - run: |
           cat >foo <<EOF
             %echo Generating a basic OpenPGP key
-            Key-Type: ECC
+            Key-Type: EDDSA
             Key-Curve: ed25519
-            Subkey-Type: ECC
+            Subkey-Type: ECDH
             Subkey-Curve: cv25519
             Name-Real: ${{ github.repository_owner }}
             Name-Email: ${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com
