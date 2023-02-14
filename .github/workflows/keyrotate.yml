@@ -17,7 +17,6 @@ permissions:
   contents: read
 
 jobs:
-  # https://www.gnupg.org/documentation/manuals/gnupg/Unattended-GPG-key-generation.html
   generate-key:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment || 'dev' }}
@@ -28,6 +27,7 @@ jobs:
       # $() must be in "double quotations" or else it won't process first
       - name: Generate temp directory for gnupg
         run: echo "GNUPGHOME=$(mktemp -d)" >> "$GITHUB_ENV"
+      # https://www.gnupg.org/documentation/manuals/gnupg/Unattended-GPG-key-generation.html
       - run: |
           cat >foo <<EOF
             %echo Generating a basic OpenPGP key
