@@ -42,10 +42,8 @@ jobs:
             Name-Real: ${{ github.repository_owner }}
             Name-Email: ${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com
             Expire-Date: ${{ vars.GNUPG_KEY_EXPIRE }}
-            Passphrase: ${{ secrets.GNUPG_KEY_PASSPHRASE }}
             %commit
             %echo done
           EOF
       - name: Generate GPG signing key
-        run: gpg --batch --full-gen-key gpgbatchconfig
-      - run: gpg --list-secret-keys
+      - run: gpg --list-secret-keys      - name: Export private key
