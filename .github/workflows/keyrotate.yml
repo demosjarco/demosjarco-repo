@@ -37,7 +37,7 @@ jobs:
             Subkey-Length: 1024
             Name-Real: ${{ github.repository_owner }}
             Name-Email: ${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com
-            Expire-Date: 0
+            Expire-Date: ${{ vars.GNUPG_KEY_EXPIRE }}
             Passphrase: ${{ secrets.GNUPG_KEY_PASSPHRASE }}
             # Do a commit here, so that we can later print "done" :-)
             %commit
