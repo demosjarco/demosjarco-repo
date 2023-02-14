@@ -39,7 +39,8 @@ jobs:
       - name: Create compressed index file
         run: gzip -k -f Packages
       - run: git config user.name "repo[bot]"
-      - run: git commit -m 'Updated index files' 'apt/Packages' 'apt/Packages.gz'
+      - run: git add 'Packages' 'Packages.gz'
+      - run: git commit -m 'Updated index files' 'Packages' 'Packages.gz'
       - run: git push
   generate-releases:
     runs-on: ubuntu-latest
