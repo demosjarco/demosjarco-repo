@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/keyRotate.yml'
+      - 'apt/KEY.gpg'
   schedule:
     # https://crontab.guru/every-year
     - cron: '0 0 1 1 *'
