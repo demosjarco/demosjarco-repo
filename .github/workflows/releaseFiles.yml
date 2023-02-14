@@ -57,5 +57,7 @@ jobs:
       - run: tree -a -pughF
       - run: git config user.name "repo[bot]"
       - run: git status
-      - run: git commit -m 'Updated signing key' 'apt/Release'
+      - name: TEMP
+        run: git add 'Release'
+      - run: git commit -m 'Updated signing key' 'Release'
       - run: git push
