@@ -1,0 +1,1 @@
+deb [signed-by=/usr/share/keyrings/demosjarco-repo.gpg] https://demosjarco.github.io/demosjarco-repo/apt ./
