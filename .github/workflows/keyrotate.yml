@@ -48,3 +48,5 @@ jobs:
       - name: Generate GPG signing key
         run: gpg --batch --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --full-gen-key gpgbatchconfig
       - run: gpg --list-secret-keys
+      - name: Export private key
+        run: gpg --output gpg-private-key.asc --armor --export-secret-keys "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
