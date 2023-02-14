@@ -35,9 +35,9 @@ jobs:
           cat >foo <<EOF
             %echo Generating a basic OpenPGP key
             Key-Type: ECC
-            Key-Curve: Curve 25519
+            Key-Curve: ed25519
             Subkey-Type: ECC
-            Subkey-Curve: Curve 25519
+            Subkey-Curve: cv25519
             Name-Real: ${{ github.repository_owner }}
             Name-Email: ${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com
             Expire-Date: ${{ vars.GNUPG_KEY_EXPIRE }}
