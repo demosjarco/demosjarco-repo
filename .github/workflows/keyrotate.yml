@@ -36,7 +36,6 @@ jobs:
             Subkey-Type: ELG-E
             Subkey-Length: 1024
             Name-Real: ${{ github.repository_owner }}
-            Name-Comment: with stupid passphrase
             Name-Email: ${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com
             Expire-Date: 0
             Passphrase: ${{ secrets.GNUPG_KEY_PASSPHRASE }}
