@@ -1,0 +1,53 @@
+name: Update release files
+
+on:
+  push:
+    paths:
+      - '.github/workflows/releaseFiles.yml'
+      - 'apt/**'
+  workflow_dispatch:
+    environment:
+        description: 'Environment to run tests against'
+        type: environment
+        default: 'dev'
+        required: true
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: apt
+
+jobs:
+  generate-packages:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment || 'prod' }}
+    permissions:
+      contents: write
+    steps:
+      - uses: step-security/harden-runner@v2
+        with:
+            egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+      - uses: actions/checkout@v3
+      - run: dpkg-scanpackages --multiversion . > Packages
+      - run: gzip -k -f Packages
+      - run: tree -a -pughF
+      - run: git status
+  generate-releases:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment || 'prod' }}
+    permissions:
+      contents: write
+    steps:
+      - uses: step-security/harden-runner@v2
+        with:
+            egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+      - uses: actions/checkout@v3
+      - run: apt-ftparchive release . > Release
+      - run: tree -a -pughF
+      - run: git status
