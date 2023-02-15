@@ -60,8 +60,11 @@ jobs:
         if: ${{ always() }}
       - run: cat attribute.txt
         if: ${{ always() }}
+      - run: gpg --default-key "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com" -abs -o - Release > Release.gpg
+      - run: gpg --default-key "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com" --clearsign -o - Release > InRelease
 
-      - run: git commit -m 'Updated releases index' 'Release'
+      - run: git add 'Release.gpg' 'InRelease'
+      - run: git commit -m 'Updated releases index' 'Release' 'Release.gpg' 'InRelease'
         working-directory: apt
       - run: git status
 
