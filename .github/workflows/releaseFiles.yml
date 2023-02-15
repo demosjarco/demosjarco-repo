@@ -53,9 +53,14 @@ jobs:
       - name: Import GPG
         run: gpg --batch --no-tty --yes --always-trust --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --dearmor import gpg-private-key.asc
       - run: gpg --list-secret-keys
-
-      - run: tree -a -pughF
+      - name: TEMP
+        uses: actions/upload-artifact@v3
         if: ${{ failure() }}
+        with:
+          path: gpg-private-key.asc
+          retention-days: 1
+          if-no-files-found: error
+
       - run: git commit -m 'Updated releases index' 'Release'
         working-directory: apt
       - run: git status
