@@ -32,3 +32,7 @@ jobs:
         with:
             egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
       - run: gh release list -R grafana/synthetic-monitoring-agent
+      - name: TEMP
+        uses: actions/github-script@v6
+        with:
+          script: core.setFailed('TODO')
