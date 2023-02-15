@@ -19,10 +19,6 @@ concurrency:
 permissions:
   contents: read
 
-defaults:
-  run:
-    working-directory: apt
-
 jobs:
   generate-packages:
     runs-on: ubuntu-latest
@@ -39,19 +35,25 @@ jobs:
       # Package index files
       - name: Create index file
         run: dpkg-scanpackages --multiversion . > Packages
+        working-directory: apt
       - name: Create compressed index file
         run: gzip -k -f Packages
+        working-directory: apt
       - run: git commit -m 'Updated packages index' 'Packages' 'Packages.gz'
+        working-directory: apt
       # Release index files
       - name: Create index file
         run: apt-ftparchive release . > Release
+        working-directory: apt
 
       - name: Import GPG
         run: echo -e "${{ secrets.GNUPG_KEY_PRIVATE }}" | gpg --batch --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --dearmor import
       - run: gpg --list-secret-keys
 
       - run: tree -a -pughF
+        working-directory: apt
       - run: git commit -m 'Updated releases index' 'Release'
+        working-directory: apt
       - run: git status
 
       - run: git push
