@@ -47,13 +47,14 @@ jobs:
         working-directory: apt
 
       - run: echo -e "$GPG_KEY" > gpg-private-key.asc
-      - name: TEMP
+      - name: Import GPG
+        run: gpg --batch --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --dearmor import gpg-private-key.asc
+        - name: TEMP
         uses: actions/upload-artifact@v3
+        if: ${{ failure() }}
         with:
           path: gpg-private-key.asc
           if-no-files-found: error
-      - name: Import GPG
-        run: gpg --batch --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --dearmor import gpg-private-key.asc
       - run: gpg --list-secret-keys
 
       - run: tree -a -pughF
