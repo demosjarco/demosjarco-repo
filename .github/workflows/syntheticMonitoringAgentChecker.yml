@@ -27,6 +27,8 @@ jobs:
     runs-on: ubuntu-latest
     # environment: ${{ inputs.environment || 'prod' }}
     environment: ${{ inputs.environment || 'dev' }}
+    permissions:
+      contents: write
     steps:
       - uses: step-security/harden-runner@v2
         with:
