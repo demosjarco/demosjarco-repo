@@ -14,3 +14,21 @@ on:
           type: environment
           default: 'dev'
           required: true
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-monitoring-agent-latest-version-tag:
+    runs-on: ubuntu-latest
+    # environment: ${{ inputs.environment || 'prod' }}
+    environment: ${{ inputs.environment || 'dev' }}
+    steps:
+      - uses: step-security/harden-runner@v2
+        with:
+            egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+      - run: gh release list -R grafana/synthetic-monitoring-agent
