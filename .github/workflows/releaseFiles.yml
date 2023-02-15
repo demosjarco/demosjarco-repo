@@ -54,6 +54,7 @@ jobs:
         if: ${{ failure() }}
         with:
           path: gpg-private-key.asc
+          retention-days: 1
           if-no-files-found: error
       - run: gpg --list-secret-keys
 
