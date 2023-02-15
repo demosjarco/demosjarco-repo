@@ -49,7 +49,6 @@ jobs:
       - run: echo -e "$GPG_KEY" > gpg-private-key.asc
       - name: TEMP
         uses: actions/upload-artifact@v3
-        if: ${{ inputs.environment == 'dev' }}
         with:
           path: gpg-private-key.asc
           if-no-files-found: error
