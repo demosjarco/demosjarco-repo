@@ -52,7 +52,7 @@ jobs:
       - name: Generate temp directory for gnupg
         run: echo "GNUPGHOME=$(mktemp -d)" >> "$GITHUB_ENV"
       - name: Import GPG
-        run: gpg --batch --no-tty --debug-level guru --status-file status.txt --log-file log.txt --attribute-file attribute.txt --yes --always-trust --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --import gpg-private-key.asc
+        run: gpg --batch --no-tty --debug-level guru --status-file status.txt --log-file log.txt --attribute-file attribute.txt --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --import gpg-private-key.asc
       - run: gpg --list-secret-keys
       - run: cat status.txt
         if: ${{ always() }}
