@@ -53,16 +53,16 @@ jobs:
             %echo done
           EOF
       - name: Generate GPG signing key
-        run: gpg --batch --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --full-gen-key gpgbatchconfig
+        run: gpg --batch --no-tty --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --full-gen-key gpgbatchconfig
       - name: Export private key
-        run: gpg --batch --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --output gpg-private-key.asc --armor --export-secret-keys "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
+        run: gpg --batch --no-tty --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --output gpg-private-key.asc --armor --export-secret-keys "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
       - name: Upload private key to secrets
         # run: gh secret set GNUPG_KEY_PRIVATE --env ${{ inputs.environment || 'prod' }} < gpg-private-key.asc
         run: gh secret set GNUPG_KEY_PRIVATE --env ${{ inputs.environment || 'dev' }} < gpg-private-key.asc
         env:
           GH_TOKEN: ${{ secrets.GH_SECRET_ADD_TOKEN }}
       - name: Output public key
-        run: gpg --output apt/KEY.gpg --batch --yes --armor --export "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
+        run: gpg --output apt/KEY.gpg --batch --no-tty --yes --armor --export "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
       - run: git config user.name "repo[bot]"
       - run: git commit -m 'Updated signing key' 'apt/KEY.gpg'
       - run: git push
