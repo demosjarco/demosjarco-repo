@@ -58,6 +58,7 @@ jobs:
       - run: gpg --default-key "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com" --clearsign -o InRelease Release
 
       - run: git add 'Release.gpg' 'InRelease'
+        working-directory: apt
       - run: git commit -m 'Updated releases index' 'Release' 'Release.gpg' 'InRelease'
         working-directory: apt
       - run: git status
