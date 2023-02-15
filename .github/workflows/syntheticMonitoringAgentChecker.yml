@@ -47,8 +47,6 @@ jobs:
         run: gh release download -R grafana/synthetic-monitoring-agent -p '*_linux_arm*.deb' -D 'apt/pool/main/synthetic-monitoring-agent'
         env:
           GH_TOKEN: ${{ github.token }}
-      - run: tree
-        working-directory: apt/pool/main/synthetic-monitoring-agent
       - run: gh release download -R grafana/synthetic-monitoring-agent -p 'checksums.txt' -O - | sha256sum --check --ignore-missing - 
         working-directory: apt/pool/main/synthetic-monitoring-agent
         env:
