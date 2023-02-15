@@ -9,11 +9,12 @@ on:
     # https://crontab.guru/every-year
     - cron: '0 0 1 1 *'
   workflow_dispatch:
-    environment:
-        description: 'Environment to run tests against'
-        type: environment
-        default: 'dev'
-        required: true
+    inputs:
+      environment:
+          description: 'Environment to run tests against'
+          type: environment
+          default: 'dev'
+          required: true
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

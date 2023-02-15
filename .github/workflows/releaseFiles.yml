@@ -6,11 +6,12 @@ on:
       - '.github/workflows/releaseFiles.yml'
       - 'apt/**'
   workflow_dispatch:
-    environment:
-        description: 'Environment to run tests against'
-        type: environment
-        default: 'dev'
-        required: true
+    inputs:
+      environment:
+          description: 'Environment to run tests against'
+          type: environment
+          default: 'dev'
+          required: true
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
