@@ -16,3 +16,5 @@ sudo apt update
 - [https://github.com/DataDog/datadog-signing-keys](https://github.com/DataDog/datadog-signing-keys)
 - [https://jensd.be/1126/linux/cross-compiling-for-arm-or-aarch64-on-debian-or-ubuntu](https://jensd.be/1126/linux/cross-compiling-for-arm-or-aarch64-on-debian-or-ubuntu)
 - [https://www.linuxbabe.com/linux-server/set-up-package-repository-debian-ubuntu-server](https://www.linuxbabe.com/linux-server/set-up-package-repository-debian-ubuntu-server)
+- [https://wiki.debian.org/SourcesList](https://wiki.debian.org/SourcesList)
+- [https://deb.nodesource.com/node_18.x/](https://deb.nodesource.com/node_18.x/)
