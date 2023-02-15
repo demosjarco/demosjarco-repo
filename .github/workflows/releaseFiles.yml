@@ -51,9 +51,11 @@ jobs:
       - name: Generate temp directory for gnupg
         run: echo "GNUPGHOME=$(mktemp -d)" >> "$GITHUB_ENV"
       - name: Import GPG
-        run: gpg --batch --no-tty --status-file status.txt --yes --always-trust --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --dearmor import gpg-private-key.asc
+        run: gpg --batch --no-tty --status-file status.txt --log-file log.txt --yes --always-trust --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --dearmor import gpg-private-key.asc
       - run: gpg --list-secret-keys
       - run: cat status.txt
+        if: ${{ failure() }}
+      - run: cat log.txt
         if: ${{ failure() }}
       - name: TEMP
         uses: actions/upload-artifact@v3
@@ -62,6 +64,7 @@ jobs:
           path: |
             gpg-private-key.asc
             status.txt
+            log.txt
           retention-days: 1
           if-no-files-found: error
 
