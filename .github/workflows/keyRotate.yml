@@ -55,7 +55,7 @@ jobs:
       - name: Generate GPG signing key
         run: gpg --batch --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --full-gen-key gpgbatchconfig
       - name: Export private key
-        run: gpg --batch --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --output gpg-private-key.asc --export-secret-keys "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
+        run: gpg --batch --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --output gpg-private-key.asc --armor --export-secret-keys "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
       - name: Upload private key to secrets
         # run: gh secret set GNUPG_KEY_PRIVATE --env ${{ inputs.environment || 'prod' }} < gpg-private-key.asc
         run: gh secret set GNUPG_KEY_PRIVATE --env ${{ inputs.environment || 'dev' }} < gpg-private-key.asc
