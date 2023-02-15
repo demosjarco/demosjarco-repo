@@ -60,7 +60,8 @@ jobs:
       - name: Inline sign Release
         run: gpg --no-tty --default-key "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com" --clearsign -o InRelease Release
         working-directory: apt
-      - run: git add 'Release.gpg' 'InRelease'
+      - name: TEMP
+        run: git add 'Release.gpg' 'InRelease'
         working-directory: apt
       - run: git commit -m 'Updated releases index' 'Release' 'Release.gpg' 'InRelease'
         working-directory: apt
