@@ -52,16 +52,9 @@ jobs:
       - name: Generate temp directory for gnupg
         run: echo "GNUPGHOME=$(mktemp -d)" >> "$GITHUB_ENV"
       - name: Import GPG
-        run: gpg --batch --no-tty --debug-level guru --status-file status.txt --log-file log.txt --attribute-file attribute.txt --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --import gpg-private-key.asc
-      - run: gpg --list-secret-keys
-      - run: cat status.txt
-        if: ${{ always() }}
-      - run: cat log.txt
-        if: ${{ always() }}
-      - run: cat attribute.txt
-        if: ${{ always() }}
       - run: gpg --default-key "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com" -abs -o - Release > Release.gpg
       - run: gpg --default-key "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com" --clearsign -o - Release > InRelease
+        run: gpg --batch --no-tty --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --import gpg-private-key.asc
 
       - run: git add 'Release.gpg' 'InRelease'
       - run: git commit -m 'Updated releases index' 'Release' 'Release.gpg' 'InRelease'
