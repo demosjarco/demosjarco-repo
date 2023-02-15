@@ -45,6 +45,11 @@ jobs:
       # Release index files
       - name: Create index file
         run: apt-ftparchive release . > Release
+        
+      - name: Import GPG
+        run: gpg --batch --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" import < ${{ secrets.GNUPG_KEY_PRIVATE }}
+      - run: gpg --list-secret-keys
+
       - run: tree -a -pughF
       - run: git commit -m 'Updated releases index' 'Release'
       - run: git status
