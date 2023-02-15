@@ -54,8 +54,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
       - run: git config user.name "repo[bot]"
-      - run: git commit -am 'New synthetic-monitoring-agent version' 'synthetic-monitoring-agent.latest'
-        working-directory: lastupdate
+      - run: git add 'lastupdate/synthetic-monitoring-agent.latest' 'apt/pool/main/synthetic-monitoring-agent/*.deb'
+      - run: git commit -am 'New synthetic-monitoring-agent version'
       - run: git push
 
       - name: TEMP
