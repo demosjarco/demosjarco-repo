@@ -34,7 +34,7 @@ jobs:
         with:
             egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
       - uses: actions/checkout@v3
-      - run: gh release list --exclude-drafts -L 1 -R grafana/synthetic-monitoring-agent > synthetic-monitoring-agent.latest
+      - run: gh release list --exclude-drafts -L 1 -R grafana/synthetic-monitoring-agent > synthetic-monitoring-agent.temp
         working-directory: lastupdate
         env:
           GH_TOKEN: ${{ github.token }}
