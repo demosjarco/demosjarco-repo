@@ -42,10 +42,10 @@ jobs:
       - run: 'diff synthetic-monitoring-agent.temp synthetic-monitoring-agent.latest'
         working-directory: lastupdate
 
-      - run: git config user.name "repo[bot]"
-      - run: git commit -m 'New synthetic-monitoring-agent version' 'synthetic-monitoring-agent.latest'
-        working-directory: lastupdate
-      - run: git push
+      # - run: git config user.name "repo[bot]"
+      # - run: git commit -m 'New synthetic-monitoring-agent version' 'synthetic-monitoring-agent.latest'
+      #   working-directory: lastupdate
+      # - run: git push
 
       - name: TEMP
         uses: actions/github-script@v6
