@@ -47,8 +47,8 @@ jobs:
             Key-Curve: ed25519
             Subkey-Type: ECDH
             Subkey-Curve: cv25519
-            Name-Real: ${{ github.repository }} signing key
-            Name-Comment: 
+            Name-Real: ${{ github.repository_owner }}
+            Name-Comment: ${{ github.repository }} signing key
             Name-Email: ${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com
             Expire-Date: ${{ vars.GNUPG_KEY_EXPIRE }}
             %commit
