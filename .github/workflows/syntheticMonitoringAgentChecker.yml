@@ -50,7 +50,7 @@ jobs:
         working-directory: apt/pool/main/synthetic-monitoring-agent
 
       - run: git config user.name "repo[bot]"
-      - run: git commit -m 'New synthetic-monitoring-agent version' 'synthetic-monitoring-agent.latest'
+      - run: git commit -am 'New synthetic-monitoring-agent version' 'synthetic-monitoring-agent.latest'
         working-directory: lastupdate
       - run: git push
 
