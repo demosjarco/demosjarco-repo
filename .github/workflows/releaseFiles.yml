@@ -57,6 +57,10 @@ jobs:
         if: ${{ failure() }}
       - run: cat log.txt
         if: ${{ failure() }}
+      - run: cat logger.txt
+        if: ${{ failure() }}
+      - run: cat attribute.txt
+        if: ${{ failure() }}
       - name: TEMP
         uses: actions/upload-artifact@v3
         if: ${{ failure() }}
