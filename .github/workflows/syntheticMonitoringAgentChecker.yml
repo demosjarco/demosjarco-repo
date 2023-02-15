@@ -34,13 +34,11 @@ jobs:
         with:
             egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
       - uses: actions/checkout@v3
-      - run: mkdir lastupdate
       - run: gh release list --exclude-drafts -L 1 -R grafana/synthetic-monitoring-agent > synthetic-monitoring-agent.latest
         working-directory: lastupdate
         env:
           GH_TOKEN: ${{ github.token }}
       - run: git config user.name "repo[bot]"
-      - run: git add 'synthetic-monitoring-agent.latest'
         working-directory: lastupdate
       - run: git commit -m 'New synthetic-monitoring-agent version' 'synthetic-monitoring-agent.latest'
         working-directory: lastupdate
