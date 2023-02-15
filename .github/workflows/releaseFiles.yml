@@ -6,7 +6,7 @@ on:
       - '.github/workflows/releaseFiles.yml'
       - 'apt/**'
   workflow_run:
-    workflows: ['Rotate repo keys']
+    workflows: ['Rotate repo keys', 'synthetic-monitoring-agent update checker']
     types: [completed]
   workflow_dispatch:
     inputs:
