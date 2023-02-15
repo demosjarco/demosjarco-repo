@@ -43,7 +43,6 @@ jobs:
       - name: Check latest version vs last checked version
         run: '! diff synthetic-monitoring-agent.temp synthetic-monitoring-agent.latest'
         working-directory: lastupdate
-      - run: mkdir -p apt/pool/main/synthetic-monitoring-agent
       - name: Download latest version
         run: gh release download -R grafana/synthetic-monitoring-agent -p '*_linux_arm*.deb' -D 'apt/pool/main/synthetic-monitoring-agent'
         env:
