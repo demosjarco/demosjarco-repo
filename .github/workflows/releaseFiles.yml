@@ -54,7 +54,7 @@ jobs:
       - name: Import GPG
         run: gpg --batch --no-tty --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --import gpg-private-key.asc
       - name: Sign Release
-      - run: gpg --default-key "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com" -abs -o Release.gpg Release
+        run: gpg --default-key "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com" -abs -o Release.gpg Release
       - run: gpg --default-key "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com" --clearsign -o InRelease Release
 
       - run: git add 'Release.gpg' 'InRelease'
