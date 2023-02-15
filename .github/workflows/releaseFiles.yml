@@ -58,6 +58,7 @@ jobs:
       - name: Inline sign Release
         run: gpg --batch --no-tty --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --default-key "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com" --clearsign -o InRelease Release
         working-directory: apt
+
       - run: git commit -m 'Updated releases index' 'Release' 'Release.gpg' 'InRelease'
         working-directory: apt
       - run: git status
