@@ -39,7 +39,7 @@ jobs:
         working-directory: lastupdate
         env:
           GH_TOKEN: ${{ github.token }}
-      - run: 'diff synthetic-monitoring-agent.temp synthetic-monitoring-agent.latest'
+      - run: '! diff synthetic-monitoring-agent.temp synthetic-monitoring-agent.latest'
         working-directory: lastupdate
 
       # - run: git config user.name "repo[bot]"
