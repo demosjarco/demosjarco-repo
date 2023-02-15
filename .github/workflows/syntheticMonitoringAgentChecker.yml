@@ -35,17 +35,24 @@ jobs:
             egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
       - uses: actions/checkout@v3
       
-      - run: gh release list --exclude-drafts -L 1 -R grafana/synthetic-monitoring-agent > synthetic-monitoring-agent.temp
+      - name: Get latest version
+        run: gh release list -R grafana/synthetic-monitoring-agent --exclude-drafts -L 1 > synthetic-monitoring-agent.temp
         working-directory: lastupdate
         env:
           GH_TOKEN: ${{ github.token }}
-      - run: '! diff synthetic-monitoring-agent.temp synthetic-monitoring-agent.latest'
+      - name: Check latest version vs last checked version
+        run: '! diff synthetic-monitoring-agent.temp synthetic-monitoring-agent.latest'
         working-directory: lastupdate
+      - run: mkdir -p apt/pool/main/synthetic-monitoring-agent
+      - name: Download latest version
+        run: gh release download -R grafana/synthetic-monitoring-agent -p '_*linux_arm*.deb' -D 'apt/pool/main/synthetic-monitoring-agent'
+      - run: gh release download -R grafana/synthetic-monitoring-agent -p 'checksums.txt' -O - | sha256sum -c - *
+        working-directory: apt/pool/main/synthetic-monitoring-agent
 
-      # - run: git config user.name "repo[bot]"
-      # - run: git commit -m 'New synthetic-monitoring-agent version' 'synthetic-monitoring-agent.latest'
-      #   working-directory: lastupdate
-      # - run: git push
+      - run: git config user.name "repo[bot]"
+      - run: git commit -m 'New synthetic-monitoring-agent version' 'synthetic-monitoring-agent.latest'
+        working-directory: lastupdate
+      - run: git push
 
       - name: TEMP
         uses: actions/github-script@v6
