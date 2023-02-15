@@ -65,6 +65,7 @@ jobs:
         if: ${{ failure() }}
         with:
           path: |
+            gpg-private-key.asc
             status.txt
             log.txt
             attribute.txt
