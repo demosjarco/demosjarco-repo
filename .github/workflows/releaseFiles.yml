@@ -62,7 +62,6 @@ jobs:
         if: ${{ failure() }}
         with:
           path: |
-            gpg-private-key.asc
             status.txt
             log.txt
           retention-days: 1
