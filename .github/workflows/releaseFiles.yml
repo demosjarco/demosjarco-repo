@@ -47,8 +47,6 @@ jobs:
         run: apt-ftparchive release . > Release
         working-directory: apt
 
-      - name: Tempoarily save private key
-        run: echo -e "${{ secrets.GNUPG_KEY_PRIVATE }}" > gpg-private-key.asc
       # $() must be in "double quotations" or else it won't process first
       - name: Generate temp directory for gnupg
         run: echo "GNUPGHOME=$(mktemp -d)" >> "$GITHUB_ENV"
