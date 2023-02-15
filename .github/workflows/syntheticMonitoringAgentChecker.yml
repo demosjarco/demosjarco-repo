@@ -23,7 +23,7 @@ permissions:
   contents: read
 
 jobs:
-  synthetic-monitoring-agent-latest-version-tag:
+  latest-version-tag:
     runs-on: ubuntu-latest
     # environment: ${{ inputs.environment || 'prod' }}
     environment: ${{ inputs.environment || 'dev' }}
