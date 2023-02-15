@@ -3,3 +3,4 @@ gpgbatchconfig
 gpg-private-key.asc
 
 lastupdate/*.temp
+apt/**/checksums.txt
