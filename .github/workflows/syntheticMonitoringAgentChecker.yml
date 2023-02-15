@@ -31,7 +31,8 @@ jobs:
       - uses: step-security/harden-runner@v2
         with:
             egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
-      - run: gh release list --exclude-drafts -L 1 -R grafana/synthetic-monitoring-agent | grep -iE '^v\d+\.\d+\.\d+(?=\t)'
+      # sed s/insert regex here/backslash group # from regex/p
+      - run: gh release list --exclude-drafts -L 1 -R grafana/synthetic-monitoring-agent | sed -n 's/^v(\d+\.\d+\.\d+)\s.+$/\1/p'
         env:
           GH_TOKEN: ${{ github.token }}
       - name: TEMP
