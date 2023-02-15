@@ -52,7 +52,7 @@ jobs:
       - run: gpg --list-secret-keys
 
       - run: tree -a -pughF
-        working-directory: apt
+        if: ${{ failure() }}
       - run: git commit -m 'Updated releases index' 'Release'
         working-directory: apt
       - run: git status
