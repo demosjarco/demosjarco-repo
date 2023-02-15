@@ -47,7 +47,7 @@ jobs:
         run: apt-ftparchive release . > Release
 
       - name: Import GPG
-        run: echo -e "${{ secrets.GNUPG_KEY_PRIVATE }}" | gpg --batch --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" import
+        run: echo -e "${{ secrets.GNUPG_KEY_PRIVATE }}" | gpg --batch --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --dearmor import
       - run: gpg --list-secret-keys
 
       - run: tree -a -pughF
