@@ -18,3 +18,6 @@ sudo apt update
 - [https://www.linuxbabe.com/linux-server/set-up-package-repository-debian-ubuntu-server](https://www.linuxbabe.com/linux-server/set-up-package-repository-debian-ubuntu-server)
 - [https://wiki.debian.org/SourcesList](https://wiki.debian.org/SourcesList)
 - [https://deb.nodesource.com/node_18.x/](https://deb.nodesource.com/node_18.x/)
+- [http://blog.jonliv.es/blog/2011/04/26/creating-your-own-signed-apt-repository-and-debian-packages/](http://blog.jonliv.es/blog/2011/04/26/creating-your-own-signed-apt-repository-and-debian-packages/)
+- [https://medium.com/sqooba/create-your-own-custom-and-authenticated-apt-repository-1e4a4cf0b864](https://medium.com/sqooba/create-your-own-custom-and-authenticated-apt-repository-1e4a4cf0b864)
+- [https://www.ibiblio.org/gferg/ldp/giles/repository/repository-2.html](https://www.ibiblio.org/gferg/ldp/giles/repository/repository-2.html)
