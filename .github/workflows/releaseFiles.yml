@@ -46,9 +46,7 @@ jobs:
         run: apt-ftparchive release . > Release
         working-directory: apt
 
-      - run: echo -e "$GPG_KEY" > gpg-private-key.asc
-        env:
-          GPG_KEY: ${{ secrets.GNUPG_KEY_PRIVATE }}
+      - run: echo -e "${{ secrets.GNUPG_KEY_PRIVATE }}" > gpg-private-key.asc
       - name: Import GPG
         run: gpg --batch --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --dearmor import gpg-private-key.asc
       - name: TEMP
