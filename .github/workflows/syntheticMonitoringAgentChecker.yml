@@ -32,7 +32,7 @@ jobs:
         with:
             egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
       # sed s/insert regex here/backslash group # from regex/p
-      - run: gh release list --exclude-drafts -L 1 -R grafana/synthetic-monitoring-agent | sed -nr 's/^v(\d+\.\d+\.\d+)\s.+$/\1/p'
+      - run: gh release list --exclude-drafts -L 1 -R grafana/synthetic-monitoring-agent | echo $(sed -nr 's/^v(\d+\.\d+\.\d+)\s.+$/\1/p')
         env:
           GH_TOKEN: ${{ github.token }}
       - name: TEMP
