@@ -45,7 +45,7 @@ jobs:
         working-directory: lastupdate
       - run: mkdir -p apt/pool/main/synthetic-monitoring-agent
       - name: Download latest version
-        run: gh release download -R grafana/synthetic-monitoring-agent -p '_*linux_arm*.deb' -D 'apt/pool/main/synthetic-monitoring-agent'
+        run: gh release download -R grafana/synthetic-monitoring-agent -p '*_linux_arm*.deb' -D 'apt/pool/main/synthetic-monitoring-agent'
         env:
           GH_TOKEN: ${{ github.token }}
       - run: gh release download -R grafana/synthetic-monitoring-agent -p 'checksums.txt' -O - | sha256sum -c - *
