@@ -60,17 +60,6 @@ jobs:
         if: ${{ failure() }}
       - run: cat attribute.txt
         if: ${{ failure() }}
-      - name: TEMP
-        uses: actions/upload-artifact@v3
-        if: ${{ failure() }}
-        with:
-          path: |
-            gpg-private-key.asc
-            status.txt
-            log.txt
-            attribute.txt
-          retention-days: 1
-          if-no-files-found: error
 
       - run: git commit -m 'Updated releases index' 'Release'
         working-directory: apt
