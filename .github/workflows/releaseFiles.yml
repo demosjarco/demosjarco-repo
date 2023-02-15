@@ -40,11 +40,15 @@ jobs:
         run: dpkg-scanpackages --multiversion . > Packages
       - name: Create compressed index file
         run: gzip -k -f Packages
+      - name: TEMP
+        run: git add 'Packages' 'Packages.gz'
       - run: git commit -m 'Updated packages index' 'Packages' 'Packages.gz'
       # Release index files
       - name: Create index file
         run: apt-ftparchive release . > Release
       - run: tree -a -pughF
+      - name: TEMP
+        run: git add 'Release'
       - run: git commit -m 'Updated releases index' 'Release'
       - run: git status
 
