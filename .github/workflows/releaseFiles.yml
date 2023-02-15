@@ -53,7 +53,7 @@ jobs:
       - name: Generate temp directory for gnupg
         run: echo "GNUPGHOME=$(mktemp -d)" >> "$GITHUB_ENV"
       - name: Import GPG
-        run: gpg --batch --no-tty --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --import <<< ${{ secrets.GNUPG_KEY_PRIVATE }}
+        run: echo -e "${{ secrets.GNUPG_KEY_PRIVATE }}" | gpg --batch --no-tty --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --import
       - name: Sign Release
         run: gpg --batch --no-tty --pinentry-mode=loopback --passphrase "${{ secrets.GNUPG_KEY_PASSPHRASE }}" --default-key "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com" -abs -o Release.gpg Release
         working-directory: apt
